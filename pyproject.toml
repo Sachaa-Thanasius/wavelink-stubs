@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "wavelink-stubs"
 description = "Type stubs for wavelink 2."
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 version = "2.6.3"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -19,13 +19,11 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Typing :: Typed",
 ]
-dependencies = ["wavelink>=2.6.3,<2.6.5", "discord.py>=2.0.1", "typing_extensions>=4.8.0"]
+dependencies = ["wavelink>=2.6.3,<2.6.6", "discord.py>=2.0.1", "typing_extensions>=4.8.0"]
 
 [project.optional-dependencies]
 dev = ["black", "ruff", "pre-commit"]
@@ -39,11 +37,11 @@ packages = ["wavelink-stubs"]
 
 [tool.black]
 line-length = 120
-target-version = ["py38", "py39", "py310", "py311"]
+target-version = ["py310", "py311"]
 
 [tool.ruff]
 line-length = 120
-target-version = "py38"
+target-version = "py310"
 select = [
     "F",
     "E",
@@ -111,7 +109,7 @@ include = ["wavelink-stubs"]
 venvPath = "."
 venv = ".venv"
 
-pythonVersion = "3.8"
+pythonVersion = "3.10"
 typeCheckingMode = "strict"
 reportPrivateUsage = "none"
 reportPropertyTypeMismatch = "warning"
