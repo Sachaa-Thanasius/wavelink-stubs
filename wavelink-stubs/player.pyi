@@ -1,6 +1,6 @@
 import datetime
-from typing import Any
-from typing_extensions import Self, TypeAlias
+from typing import Any, TypeAlias
+from typing_extensions import Self
 
 import discord
 from discord.types.voice import GuildVoiceState, VoiceServerUpdate

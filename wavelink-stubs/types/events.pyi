@@ -1,5 +1,5 @@
-from typing import Literal, TypedDict
-from typing_extensions import NotRequired, TypeAlias
+from typing import Literal, TypeAlias, TypedDict
+from typing_extensions import NotRequired
 
 _TrackStartEventType: TypeAlias = Literal["TrackStartEvent"]
 _OtherEventOpType: TypeAlias = Literal[

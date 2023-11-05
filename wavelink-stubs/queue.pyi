@@ -1,8 +1,8 @@
 import asyncio
 from collections import deque
 from collections.abc import AsyncIterator, Iterable, Iterator
-from typing import Any
-from typing_extensions import Self, TypeAlias
+from typing import Any, TypeAlias
+from typing_extensions import Self
 
 from .ext import spotify
 from .tracks import Playable
