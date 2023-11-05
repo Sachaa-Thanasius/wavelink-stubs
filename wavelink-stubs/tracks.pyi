@@ -23,11 +23,11 @@ _BotT_co = TypeVar("_BotT_co", bound=commands.Bot | commands.AutoShardedBot, cov
 
 _source_mapping: Final[dict[str, TrackSource]]
 
-class Playlist(metaclass=abc.ABCMeta):
+class Playlist(abc.ABC):
     data: dict[str, Any]
     def __init__(self, data: dict[str, Any]) -> None: ...
 
-class Playable(metaclass=abc.ABCMeta):
+class Playable(abc.ABC):
     PREFIX: ClassVar[str] = ""
     data: TrackPayload
     encoded: str
@@ -68,11 +68,10 @@ class YouTubeTrack(Playable):
     PREFIX: ClassVar[str] = "ytsearch:"
     _thumb: str
 
-    def __init__(self, data: TrackPayload) -> None: ...
     @property
     def thumbnail(self) -> str: ...
-    thumb = thumbnail
-
+    @property
+    def thumb(self) -> str: ...
     async def fetch_thumbnail(self, *, node: Node | None = None) -> str: ...
 
 class YouTubeMusicTrack(YouTubeTrack):

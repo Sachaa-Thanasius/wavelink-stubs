@@ -20,7 +20,7 @@ __all__ = (
 )
 
 _BotT_co = TypeVar("_BotT_co", bound=commands.Bot | commands.AutoShardedBot, covariant=True)
-ST = TypeVar("ST", bound=Playable)
+_PlayableT = TypeVar("_PlayableT", bound=Playable)
 
 class SpotifyAsyncIterator(AsyncIterator[SpotifyTrack]):
     _query: str
@@ -94,7 +94,7 @@ class SpotifyTrack:
     ) -> SpotifyAsyncIterator: ...
     @classmethod
     async def convert(cls, ctx: commands.Context[_BotT_co], argument: str) -> Self: ...
-    async def fulfill(self, *, player: Player, cls: type[ST], populate: bool) -> ST: ...
+    async def fulfill(self, *, player: Player, cls: type[_PlayableT], populate: bool) -> _PlayableT: ...
 
 class SpotifyClient:
     _client_id: str

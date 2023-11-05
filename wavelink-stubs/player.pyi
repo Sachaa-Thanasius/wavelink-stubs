@@ -20,7 +20,7 @@ VoiceChannel: TypeAlias = discord.VoiceChannel | discord.StageChannel
 
 class Player(discord.VoiceProtocol):
     client: discord.Client
-    channel: VoiceChannel | None
+    channel: VoiceChannel | None  # type: ignore [reportIncompatibleVariableOverride] # Known
     nodes: list[Node]
     current_node: Node
     _guild: discord.Guild | None

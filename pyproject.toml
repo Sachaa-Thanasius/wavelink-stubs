@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wavelink-stubs"
-description = "An asynchronous scraper for Archive Of Our Own, made in Python."
+description = "Type stubs for wavelink 2."
 requires-python = ">=3.8"
-version = "2.6.4"
+version = "2.6.3"
 readme = "README.md"
 license = { file = "LICENSE" }
 keywords = ["python", "python-3", "wavelink", "type-stubs"]
@@ -23,10 +23,9 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: Implementation :: CPython",
     "Typing :: Typed",
 ]
-dependencies = ["wavelink>=2.6.4,<2.6.5", "discord.py>=2.0.1", "typing_extensions>=4.8.0"]
+dependencies = ["wavelink>=2.6.3,<2.6.5", "discord.py>=2.0.1", "typing_extensions>=4.8.0"]
 
 [project.optional-dependencies]
 dev = ["black", "ruff", "pre-commit"]
@@ -37,9 +36,6 @@ Repository = "https://github.com/Sachaa-Thanasius/wavelink-stubs"
 
 [tool.setuptools]
 packages = ["wavelink-stubs"]
-
-[tool.setuptools.package-data]
-"wavelink-stubs" = ["py.typed"]
 
 [tool.black]
 line-length = 120
@@ -103,7 +99,7 @@ unfixable = [
     "PLC0414", # This causes issues when declaring module imports in __init__ files. Disallow deletion.
 ]
 [tool.ruff.per-file-ignores]
-"__init__.py" = ["F403"]
+"__init__.pyi" = ["F403"]
 
 [tool.ruff.isort]
 extra-standard-library = ["typing_extensions"]

@@ -1,6 +1,7 @@
-from discord.types.voice import GuildVoiceState, VoiceServerUpdate
 from typing import TypedDict
 from typing_extensions import NotRequired
+
+from discord.types.voice import GuildVoiceState, VoiceServerUpdate
 
 class VoiceState(TypedDict):
     token: str

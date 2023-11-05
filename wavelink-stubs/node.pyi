@@ -3,7 +3,7 @@ from typing import Any, ClassVar, TypeVar
 import aiohttp
 
 import discord
-from discord.utils import MISSING, classproperty
+from discord.utils import classproperty
 
 from .enums import NodeStatus
 from .ext import spotify as spotify_
@@ -12,8 +12,8 @@ from .tracks import Playable, Playlist
 from .types.request import Request
 from .websocket import Websocket
 
-PlayableT = TypeVar("PlayableT", bound=Playable)
-PlaylistT = TypeVar("PlaylistT", bound=Playlist)
+_PlayableT = TypeVar("_PlayableT", bound=Playable)
+_PlaylistT = TypeVar("_PlaylistT", bound=Playlist)
 
 __all__ = ("Node", "NodePool")
 
@@ -34,19 +34,19 @@ class Node:
     _invalidated: dict[int, Player]
     _status: NodeStatus
     _major_version: int | None
-    _spotify: spotify_.SpotifyClient | None = None
+    _spotify: spotify_.SpotifyClient | None
 
     def __init__(
         self,
         *,
-        id: str | None = None,
+        id: str | None = ...,
         uri: str,
         password: str,
-        secure: bool = False,
-        use_http: bool = False,
-        session: aiohttp.ClientSession = MISSING,
-        heartbeat: float = 15.0,
-        retries: int | None = None,
+        secure: bool = ...,
+        use_http: bool = ...,
+        session: aiohttp.ClientSession = ...,
+        heartbeat: float = ...,
+        retries: int | None = ...,
     ) -> None: ...
     def __repr__(self) -> str: ...
     def __eq__(self, other: object) -> bool: ...
@@ -71,9 +71,9 @@ class Node:
         query: str | None = ...,
         data: Request | None = ...,
     ) -> dict[str, Any] | None: ...
-    async def get_tracks(self, cls: type[PlayableT], query: str) -> list[PlayableT]: ...
-    async def get_playlist(self, cls: type[PlaylistT], query: str) -> PlaylistT: ...
-    async def build_track(self, *, cls: type[PlayableT], encoded: str) -> PlayableT: ...
+    async def get_tracks(self, cls: type[_PlayableT], query: str) -> list[_PlayableT]: ...
+    async def get_playlist(self, cls: type[_PlaylistT], query: str) -> _PlaylistT | None: ...
+    async def build_track(self, *, cls: type[_PlayableT], encoded: str) -> _PlayableT: ...
 
 class NodePool:
     __nodes: ClassVar[dict[str, Node]]
@@ -84,15 +84,29 @@ class NodePool:
         *,
         client: discord.Client,
         nodes: list[Node],
-        spotify: spotify_.SpotifyClient | None = None,
+        spotify: spotify_.SpotifyClient | None = ...,
     ) -> dict[str, Node]: ...
     @classproperty
     def nodes(cls) -> dict[str, Node]: ...
     @classmethod
-    def get_node(cls, id: str | None = None) -> Node: ...
+    def get_node(cls, id: str | None = ...) -> Node: ...
     @classmethod
     def get_connected_node(cls) -> Node: ...
     @classmethod
-    async def get_tracks(cls_, query: str, /, *, cls: type[PlayableT], node: Node | None = None) -> list[PlayableT]: ...  # type: ignore
+    async def get_tracks(
+        cls_,  # type: ignore [reportSelfClsParameterName]
+        query: str,
+        /,
+        *,
+        cls: type[_PlayableT],
+        node: Node | None = ...,
+    ) -> list[_PlayableT]: ...
     @classmethod
-    async def get_playlist(cls_, query: str, /, *, cls: type[PlaylistT], node: Node | None = None) -> PlaylistT: ...  # type: ignore
+    async def get_playlist(
+        cls_,  # type: ignore [reportSelfClsParameterName]
+        query: str,
+        /,
+        *,
+        cls: type[_PlaylistT],
+        node: Node | None = ...,
+    ) -> _PlaylistT | None: ...
