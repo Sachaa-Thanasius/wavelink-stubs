@@ -6,7 +6,7 @@ import discord
 from discord.utils import classproperty
 
 from .enums import NodeStatus
-from .ext import spotify as spotify_
+from .ext import spotify
 from .player import Player
 from .tracks import Playable, Playlist
 from .types.request import Request
@@ -34,7 +34,7 @@ class Node:
     _invalidated: dict[int, Player]
     _status: NodeStatus
     _major_version: int | None
-    _spotify: spotify_.SpotifyClient | None
+    _spotify: spotify.SpotifyClient | None
 
     def __init__(
         self,
@@ -84,7 +84,7 @@ class NodePool:
         *,
         client: discord.Client,
         nodes: list[Node],
-        spotify: spotify_.SpotifyClient | None = ...,
+        spotify: spotify.SpotifyClient | None = ...,
     ) -> dict[str, Node]: ...
     @classproperty
     def nodes(cls) -> dict[str, Node]: ...

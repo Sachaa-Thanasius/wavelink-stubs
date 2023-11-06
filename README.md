@@ -7,8 +7,14 @@
 
 This package contains type stubs to provide more precise static types and type inference for [wavelink 2](https://github.com/PythonistaGuild/Wavelink). wavelink 3 doesn't need these stubs since it is fully type-annotated.
 
+## Installation
+
+```shell
+pip install wavelink-stubs
+```
+
 ## Version number scheme
-The major and minor version of `wavelink-stubs` will match the major and minor version numbers of the `wavelink` release the stubs represent.
+The major and minor version of `wavelink-stubs` will roughly match the major and minor version numbers of the `wavelink` release the stubs represent.
 
 ## Acknowledgements
 Thank you to:

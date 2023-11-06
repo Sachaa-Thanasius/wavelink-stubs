@@ -33,7 +33,8 @@ Repository = "https://github.com/Sachaa-Thanasius/wavelink-stubs"
 "Bug Tracker" = "https://github.com/Sachaa-Thanasius/wavelink-stubs/issues"
 
 [tool.setuptools]
-packages = ["wavelink-stubs"]
+include-package-data = true
+packages = ["wavelink-stubs", "wavelink-stubs.types", "wavelink-stubs.ext.spotify"]
 
 [tool.black]
 line-length = 120
@@ -111,6 +112,5 @@ venv = ".venv"
 
 pythonVersion = "3.10"
 typeCheckingMode = "strict"
-reportPrivateUsage = "none"
 reportPropertyTypeMismatch = "warning"
 reportUnnecessaryTypeIgnoreComment = "warning"
