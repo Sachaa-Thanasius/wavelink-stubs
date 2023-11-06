@@ -97,6 +97,7 @@ unfixable = [
     "ERA",     # I don't want anything erroneously detected deleted by this.
     "PLC0414", # This causes issues when declaring module imports in __init__ files. Disallow deletion.
 ]
+
 [tool.ruff.per-file-ignores]
 "__init__.pyi" = ["F403"]
 
