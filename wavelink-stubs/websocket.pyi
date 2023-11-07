@@ -7,7 +7,7 @@ from .backoff import Backoff
 from .node import Node
 from .player import Player
 
-class Websocket:
+class Websocket:  # undocumented
     __slots__ = (
         "node",
         "socket",

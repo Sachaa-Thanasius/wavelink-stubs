@@ -22,7 +22,7 @@ __all__ = (
 _BotT_co = TypeVar("_BotT_co", bound=commands.Bot | commands.AutoShardedBot, covariant=True)
 _PlayableT = TypeVar("_PlayableT", bound=Playable)
 
-class SpotifyAsyncIterator(AsyncIterator[SpotifyTrack]):
+class SpotifyAsyncIterator(AsyncIterator[SpotifyTrack]):  # undocumented
     _query: str
     _limit: int
     _type: SpotifySearchType
@@ -97,22 +97,11 @@ class SpotifyTrack:
     async def fulfill(self, *, player: Player, cls: type[_PlayableT], populate: bool) -> _PlayableT: ...
 
 class SpotifyClient:
-    _client_id: str
-    _client_secret: str
     session: aiohttp.ClientSession
-    _bearer_token: str | None
-    _expiry: int
 
     def __init__(self, *, client_id: str, client_secret: str) -> None: ...
     @property
     def grant_headers(self) -> dict[str, Any]: ...
     @property
     def bearer_headers(self) -> dict[str, Any]: ...
-    async def _get_bearer_token(self) -> None: ...
     def is_token_expired(self) -> bool: ...
-    async def _search(
-        self,
-        query: str,
-        type: SpotifySearchType = ...,
-        iterator: bool = False,
-    ) -> list[SpotifyTrack]: ...

@@ -28,7 +28,7 @@ class Playlist(abc.ABC):
     def __init__(self, data: dict[str, Any]) -> None: ...
 
 class Playable(abc.ABC):
-    PREFIX: ClassVar[str] = ""
+    PREFIX: ClassVar[str]
     data: TrackPayload
     encoded: str
     is_seekable: bool
@@ -44,14 +44,11 @@ class Playable(abc.ABC):
 
     def __init__(self, data: TrackPayload) -> None: ...
     def __hash__(self) -> int: ...
-    def __str__(self) -> str: ...
-    def __repr__(self) -> str: ...
     def __eq__(self, other: object) -> bool: ...
     @classmethod
     async def search(
         cls,
         query: str,
-        /,
         *,
         node: Node | None = None,
     ) -> YouTubePlaylist | SoundCloudPlaylist | list[Self]: ...
@@ -65,23 +62,22 @@ class Playable(abc.ABC):
 class GenericTrack(Playable): ...
 
 class YouTubeTrack(Playable):
-    PREFIX: ClassVar[str] = "ytsearch:"
+    PREFIX: ClassVar[str]
     _thumb: str
 
     @property
     def thumbnail(self) -> str: ...
-    @property
-    def thumb(self) -> str: ...
+    thumb = thumbnail
     async def fetch_thumbnail(self, *, node: Node | None = None) -> str: ...
 
 class YouTubeMusicTrack(YouTubeTrack):
-    PREFIX: ClassVar[str] = "ytmsearch:"
+    PREFIX: ClassVar[str]
 
 class SoundCloudTrack(Playable):
-    PREFIX: ClassVar[str] = "scsearch:"
+    PREFIX: ClassVar[str]
 
 class YouTubePlaylist(Playable, Playlist):
-    PREFIX: ClassVar[str] = "ytpl:"
+    PREFIX: ClassVar[str]
     data: dict[str, Any]  # type: ignore # Override Playable's data attribute.
     tracks: list[YouTubeTrack]
     name: str
@@ -89,7 +85,6 @@ class YouTubePlaylist(Playable, Playlist):
     source: TrackSource
 
     def __init__(self, data: dict[str, Any]) -> None: ...
-    def __str__(self) -> str: ...
 
 class SoundCloudPlaylist(Playable, Playlist):
     data: dict[str, Any]  # type: ignore # Override Playable's data attribute.
@@ -99,4 +94,3 @@ class SoundCloudPlaylist(Playable, Playlist):
     source: TrackSource
 
     def __init__(self, data: dict[str, Any]) -> None: ...
-    def __str__(self) -> str: ...

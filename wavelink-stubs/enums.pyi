@@ -1,6 +1,12 @@
 import enum
 
-__all__ = ("NodeStatus", "TrackSource", "LoadType", "TrackEventType", "DiscordVoiceCloseType")
+__all__ = (
+    "NodeStatus",
+    "TrackSource",
+    "LoadType",
+    "TrackEventType",
+    "DiscordVoiceCloseType",
+)
 
 class NodeStatus(enum.Enum):
     DISCONNECTED: int

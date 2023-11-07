@@ -1,12 +1,12 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "wavelink-stubs"
 description = "Type stubs for wavelink 2."
 requires-python = ">=3.10"
-version = "2.6.3"
+version = "2.6.5"
 readme = "README.md"
 license = { file = "LICENSE" }
 keywords = ["python", "python-3", "wavelink", "type-stubs"]

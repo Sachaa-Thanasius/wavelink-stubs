@@ -5,7 +5,10 @@ from .player import Player
 from .tracks import Playable
 from .types.events import EventOp
 
-__all__ = ("TrackEventPayload", "WebsocketClosedPayload")
+__all__ = (
+    "TrackEventPayload",
+    "WebsocketClosedPayload",
+)
 
 class TrackEventPayload:
     event: TrackEventType

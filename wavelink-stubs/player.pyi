@@ -1,5 +1,4 @@
-import datetime
-from typing import Any, TypeAlias
+from typing import Any, TypeAlias, final
 from typing_extensions import Self
 
 import discord
@@ -8,50 +7,30 @@ from discord.types.voice import GuildVoiceState, VoiceServerUpdate
 from .ext import spotify
 from .filters import Filter
 from .node import Node
-from .payloads import TrackEventPayload
 from .queue import Queue
 from .tracks import Playable
-from .types.events import PlayerUpdateOp
-from .types.state import DiscordVoiceState
 
 __all__ = ("Player",)
 
-VoiceChannel: TypeAlias = discord.VoiceChannel | discord.StageChannel
+_VoiceChannel: TypeAlias = discord.VoiceChannel | discord.StageChannel
 
 class Player(discord.VoiceProtocol):
     client: discord.Client
-    channel: VoiceChannel | None  # type: ignore [reportIncompatibleVariableOverride] # Known
+    channel: _VoiceChannel  # type: ignore [reportIncompatibleVariableOverride] # Known
     nodes: list[Node]
     current_node: Node
-    _guild: discord.Guild | None
-    _voice_state: DiscordVoiceState
-    _player_state: dict[str, Any]
-    swap_on_disconnect: bool
-    last_update: datetime.datetime | None
-    last_position: int
-    _ping: int
     queue: Queue
-    _current: Playable | None
-    _original: Playable | None
-    _volume: int
-    _paused: bool
-    _track_seeds: list[str]
-    _autoplay: bool
     auto_queue: Queue
-    _auto_threshold: int
-    _filter: Filter | None
-    _destroyed: bool
 
-    def __call__(self, client: discord.Client, channel: VoiceChannel) -> Self: ...
+    def __call__(self, client: discord.Client, channel: _VoiceChannel) -> Self: ...
     def __init__(
         self,
         client: discord.Client = ...,
-        channel: VoiceChannel = ...,
+        channel: _VoiceChannel = ...,
         *,
         nodes: list[Node] | None = None,
         swap_node_on_disconnect: bool = True,
     ) -> None: ...
-    async def _auto_play_event(self, payload: TrackEventPayload) -> None: ...
     @property
     def autoplay(self) -> bool: ...
     @autoplay.setter
@@ -71,11 +50,10 @@ class Player(discord.VoiceProtocol):
     def current(self) -> Playable | None: ...
     @property
     def filter(self) -> dict[str, Any]: ...
-    async def _update_event(self, data: PlayerUpdateOp | None) -> None: ...
+    @final
     async def on_voice_server_update(self, data: VoiceServerUpdate) -> None: ...
+    @final
     async def on_voice_state_update(self, data: GuildVoiceState) -> None: ...
-    async def _dispatch_voice_update(self, data: DiscordVoiceState | None = ...) -> None: ...
-    def _connection_check(self, channel: VoiceChannel) -> None: ...
     async def connect(self, *, timeout: float, reconnect: bool, **kwargs: Any) -> None: ...
     async def move_to(self, channel: discord.VoiceChannel) -> None: ...
     async def play(
@@ -93,8 +71,5 @@ class Player(discord.VoiceProtocol):
     async def pause(self) -> None: ...
     async def resume(self) -> None: ...
     async def stop(self, *, force: bool = True) -> None: ...
-    async def set_filter(self, _filter: Filter, /, *, seek: bool = False) -> None: ...
-    def _invalidate(self, *, silence: bool = False, before_connect: bool = False) -> None: ...
-    async def _destroy(self, *, guild_id: int | None = None) -> None: ...
+    async def set_filter(self, _filter: Filter, *, seek: bool = False) -> None: ...
     async def disconnect(self, **kwargs: Any) -> None: ...
-    async def _swap_state(self) -> None: ...

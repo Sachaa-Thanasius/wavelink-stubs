@@ -24,10 +24,7 @@ class SpotifySearchType(enum.Enum):
     unusable: int
 
 class SpotifyDecodePayload:
-    __type: SpotifySearchType
-    __id: str
     def __init__(self, *, type_: SpotifySearchType, id_: str) -> None: ...
-    def __repr__(self) -> str: ...
     @property
     def type(self) -> SpotifySearchType: ...
     @property
