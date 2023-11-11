@@ -1,5 +1,6 @@
 # wavelink-stubs
 
+[![PyPI supported Python versions](https://img.shields.io/pypi/pyversions/wavelink-stubs.svg)](https://pypi.python.org/pypi/wavelink-stubs)
 [![License: MIT](https://img.shields.io/github/license/Sachaa-Thanasius/wavelink-stubs.svg)](https://opensource.org/licenses/MIT)
 [![Checked with pyright](https://img.shields.io/badge/pyright-checked-informational.svg)](https://github.com/microsoft/pyright/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
