@@ -23,7 +23,6 @@ class BaseFilter(abc.ABC):
 class Equalizer(BaseFilter):
     bands: list[dict[str, float]]
     def __init__(self, name: str = ..., *, bands: list[tuple[int, float]]) -> None: ...
-    @property
     @classmethod
     def flat(cls) -> Self: ...
     @classmethod
