@@ -11,12 +11,12 @@ from wavelink import Node, Playable, Player
 from .utils import SpotifyDecodePayload, SpotifySearchType, decode_url
 
 __all__ = (
-    "SpotifySearchType",
     "SpotifyClient",
-    "SpotifyTrack",
-    "SpotifyRequestError",
-    "decode_url",
     "SpotifyDecodePayload",
+    "SpotifyRequestError",
+    "SpotifySearchType",
+    "SpotifyTrack",
+    "decode_url",
 )
 
 _BotT_co = TypeVar("_BotT_co", bound=commands.Bot | commands.AutoShardedBot, covariant=True)
@@ -44,19 +44,19 @@ class SpotifyRequestError(Exception):
 
 class SpotifyTrack:
     __slots__ = (
-        "raw",
+        "__dict__",
         "album",
-        "images",
         "artists",
-        "name",
-        "title",
-        "uri",
-        "id",
-        "length",
         "duration",
         "explicit",
+        "id",
+        "images",
         "isrc",
-        "__dict__",
+        "length",
+        "name",
+        "raw",
+        "title",
+        "uri",
     )
     raw: dict[str, Any]
     album: str
