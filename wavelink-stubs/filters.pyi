@@ -4,16 +4,16 @@ from typing_extensions import Self
 
 __all__ = (
     "BaseFilter",
+    "ChannelMix",
+    "Distortion",
     "Equalizer",
+    "Filter",
     "Karaoke",
+    "LowPass",
+    "Rotation",
     "Timescale",
     "Tremolo",
     "Vibrato",
-    "Rotation",
-    "Distortion",
-    "ChannelMix",
-    "LowPass",
-    "Filter",
 )
 
 class BaseFilter(abc.ABC):
