@@ -9,14 +9,14 @@ from .player import Player
 
 class Websocket:  # undocumented
     __slots__ = (
+        "_listener_task",
+        "_original_attempts",
+        "_reconnect_task",
+        "backoff",
         "node",
-        "socket",
         "retries",
         "retry",
-        "_original_attempts",
-        "backoff",
-        "_listener_task",
-        "_reconnect_task",
+        "socket",
     )
     node: Node
     socket: aiohttp.ClientWebSocketResponse | None

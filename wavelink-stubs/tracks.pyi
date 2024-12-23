@@ -9,14 +9,14 @@ from .node import Node
 from .types.track import Track as TrackPayload
 
 __all__ = (
+    "GenericTrack",
     "Playable",
     "Playlist",
-    "YouTubeTrack",
-    "GenericTrack",
-    "YouTubeMusicTrack",
-    "SoundCloudTrack",
-    "YouTubePlaylist",
     "SoundCloudPlaylist",
+    "SoundCloudTrack",
+    "YouTubeMusicTrack",
+    "YouTubePlaylist",
+    "YouTubeTrack",
 )
 
 _BotT_co = TypeVar("_BotT_co", bound=commands.Bot | commands.AutoShardedBot, covariant=True)
